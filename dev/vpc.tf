@@ -8,7 +8,7 @@ terraform {
   }
 
 provider "vault" {
-  address = "http://13.232.111.8:8200"
+  address = "http://3.110.187.144:8200"
   auth_login_userpass {
     username = "gjayan"
     }
