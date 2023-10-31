@@ -8,7 +8,7 @@ terraform {
   }
 
 provider "vault" {
-  address = "http://3.110.187.144:8200"
+  address = "http://43.205.211.26:8200"
   auth_login_userpass {
     username = "gjayan"
     }
@@ -19,7 +19,7 @@ data "vault_generic_secret" "env" {
 }
 
 resource "aws_vpc" "vpc" {
-  cidr_block       = vault_generic_secret.env.data["ip"]
+  cidr_block       = data.vault_generic_secret.env.data["ip"]
   instance_tenancy = "default"
 
   tags = {
