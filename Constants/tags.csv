@@ -1,0 +1,5 @@
+id,key,value
+ami,Name,Gayathri-terraform-ami
+all,Used_by,Gayathri
+ec2,Name,Gayathri-terraform-ec2
+sg,Name, Gayathri-terraform-sg
