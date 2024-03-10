@@ -1,0 +1,2 @@
+name,description,ingress-rule,egress-rule
+Gayathri-terraform-sg,Gayathri Security group,i-rule1 i-rule2,e-rule1

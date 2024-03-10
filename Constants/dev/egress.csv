@@ -1,0 +1,2 @@
+name,from-port,to-port,protocol,cidr-block
+e-rule1,0,0,-1,0.0.0.0/0

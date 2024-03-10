@@ -1,0 +1,3 @@
+name,description,from-port,to-port,protocol
+i-rule1,rule for port 22,22,22,tcp
+i-rule2,rule for port 80,80,80,tcp

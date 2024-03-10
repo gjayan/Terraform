@@ -1,0 +1,2 @@
+name,virtualization-type,root-device-name,device-name,volume-size,key,value
+Gayathri-ami,hvm,/dev/xvda,/dev/xvda,8,Name Used_by,Gayathri-ami Gayathri
