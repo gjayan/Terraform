@@ -1,0 +1,2 @@
+id,ami-id,instance-type,sg-name
+1,ami-0607784b46cbe5816,t2.micro,Gayathri-terraform-sg
