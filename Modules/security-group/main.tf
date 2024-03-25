@@ -1,11 +1,3 @@
-(* data "aws_vpc" "default" {
-  id = var.vpc-id
-//  filter {
-//     name = "tag:Name"
-//     value = [""]
-//  }
-} *)
-
 resource "aws_security_group" "security-group" {
   name        = var.sg-name
   description = var.sg-description
@@ -31,19 +23,8 @@ resource "aws_security_group" "security-group" {
     protocol         = lookup(egress.value, "protocol")
     cidr_blocks      = [lookup(egress.value, "cidr-block")]
            }
-                   }
+}
 
-
-                   
-
-(* //   dynamic "tag" {
-//    for_each = var.tags
-//    content {
-//    key = tag.key
-//    value =  tag.value
-//   }
-// }
- *)
 tags = var.tags
  
 lifecycle {
