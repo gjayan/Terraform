@@ -20,24 +20,6 @@ locals {
  tags = csvdecode(file("./Constants/tags.csv"))
 }
 
-(* // module "ami" {
-//   source = "./Modules/ami"
-//   for_each = {for ami in local.ami : ami.name => ami}
-//   ami-name = each.value.name
-//   virtualization-type = each.value.virtualization-type
-//   root-device-name = each.value.root-device-name
-//   device-name =  each.value.device-name
-//   volume-size = each.value.volume-size
-//   tags = {
-//     for tag in local.tags:
-//     tag.key => tag.value if tag.id == "ami" || "all"  
-//   }
-//   // tags = {
-//   // key = split(" ", each.value.key)
-//   // value = split(" ", each.value.value)
-//   //}
-// } *)
-
 module "instance" {
   source = "./Modules/ec2"
   depends_on = [module.security-group]
