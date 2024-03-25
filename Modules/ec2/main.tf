@@ -13,13 +13,5 @@ resource "aws_instance" "instance" {
 
  security_groups = [var.security-group]
 
-(* // dynamic "tag" {
-//   for_each = var.tags
-//   content {
-//     key = tag.key
-//     value =  tag.value
-//   }
-// } *)
-
 tags= var.tags
 }
