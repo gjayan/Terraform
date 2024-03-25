@@ -1,3 +1,4 @@
+
 name: Terraform and tfsec
 
 on:
@@ -60,8 +61,19 @@ jobs:
         -out=TFplan.JSON
       continue-on-error: true
 
+    # - name: tfsec
+    #   uses: tfsec/tfsec-sarif-action@v0.0.3
+    #   with:
+    #     working_directory: terraform/relevant
+    #     sarif_file: tfsec.sarif  
+
     - name: tfsec
-      uses: tfsec/tfsec-sarif-action@v0.0.3
+      uses: aquasecurity/tfsec-sarif-action@v0.1.0
       with:
-        working_directory: terraform/relevant
-        sarif_file: tfsec.sarif  
+        sarif_file: tfsec.sarif          
+
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        # Path to SARIF file relative to the root of the repository
+        sarif_file: tfsec.sarif   
