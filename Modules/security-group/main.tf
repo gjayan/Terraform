@@ -1,7 +1,7 @@
 data "aws_vpc" "default" {
   filter {
      name = "tag:Name"
-     value = ["Gayathri-VPC"]
+     values = ["Gayathri-VPC"]
   }
 }
 
