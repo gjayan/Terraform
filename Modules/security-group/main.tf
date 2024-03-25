@@ -3,6 +3,7 @@ data "aws_vpc" "default" {
      name = "tag:Name"
      value = ["Gayathri-VPC"]
   }
+}
 
 resource "aws_security_group" "security-group" {
   name        = var.sg-name
