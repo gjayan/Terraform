@@ -1,0 +1,67 @@
+name: Terraform and tfsec
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    environment: Dev
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v1
+
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        # ignore-unfixed: true
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+# Configuring credentials for github actions
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+# Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+ # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+# Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check
+
+# Checks that all Terraform configuration files are correctly written
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+# Generates an execution plan for Terraform
+    - name: Terraform Plan
+      id: plan
+      if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
+      run: |
+        terraform plan -no-color -input=false \
+        -out=TFplan.JSON
+      continue-on-error: true
+
+    - name: tfsec
+      uses: tfsec/tfsec-sarif-action@v0.0.3
+      with:
+        working_directory: terraform/relevant
+        sarif_file: tfsec.sarif  
