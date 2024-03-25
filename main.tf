@@ -2,6 +2,14 @@ provider "aws" {
   region     = "ap-south-1"
 }
 
+  backend "s3" {
+    bucket         	   = "gayathri-s3"
+    key              	   = "state/terraform.tfstate"
+    region         	   = "ap-south-1"
+  }
+}
+
+
 locals {
  ami = csvdecode(file("./Constants/dev/ami.csv"))
  ec2 = csvdecode(file("./Constants/dev/ec2.csv"))
