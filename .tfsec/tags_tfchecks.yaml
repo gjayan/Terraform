@@ -1,0 +1,20 @@
+---
+checks:
+- code: MYCUSTOMCHECK_TAGS
+  description: A custom check to ensure that the Used_by tag is present in all resources created
+  impact: By not having Used_by tag we cannot determine who is using the resource
+  resolution: Add the Used_by tag
+  requiredTypes:
+  - resource
+  requiredLabels:
+  - aws_*
+  severity: CRITICAL
+  matchSpec:
+    name: tags
+    action: contains
+    value: Used_by
+  errorMessage: The required Used_by tag is missing!!!
+
+  
+  relatedLinks:
+  - http://example-org/docs/sec/tagging.html
