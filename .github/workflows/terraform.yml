@@ -65,7 +65,6 @@ jobs:
       uses: aquasecurity/tfsec-sarif-action@v0.1.0
       with:
         sarif_file: tfsec.sarif 
-        config_file: .tfsec/tags_tfchecks.yaml
 
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v2
