@@ -77,4 +77,9 @@ jobs:
       with:
         name: tfsec-output
         path: tfsec.sarif
+
+    - name: Download the build output
+      uses: actions/download-artifact@v2
+      with:
+        name: tfsec-output
             
