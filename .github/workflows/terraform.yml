@@ -22,14 +22,14 @@ jobs:
       with:
         scan-type: 'fs'
         # ignore-unfixed: true
-        # format: 'sarif'
-        output: 'trivy-results'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
         
     - name: Upload the trivy output
       uses: actions/upload-artifact@v3
       with:
         name: trivy-output
-        path: trivy-results
+        path: trivy-results.sarif
         
 # Configuring credentials for github actions
     - name: Configure AWS credentials
@@ -64,14 +64,14 @@ jobs:
       # if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
       run: |
         terraform plan -no-color -input=false \
-        -out=TFplan.JSON
+        -out=tfplan.json
       continue-on-error: true
 
     - name: Upload the terraform plan output
       uses: actions/upload-artifact@v3
       with:
         name: tf-plan
-        path: TFplan.JSON
+        path: tfplan.json
 
     - name: tfsec
       uses: aquasecurity/tfsec-sarif-action@v0.1.0
