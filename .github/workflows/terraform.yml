@@ -23,7 +23,7 @@ jobs:
         scan-type: 'fs'
         # ignore-unfixed: true
         # format: 'sarif'
-        output: 'trivy-results'
+        output: trivy-results
         
     - name: Upload the trivy output
       uses: actions/upload-artifact@v3
@@ -74,18 +74,18 @@ jobs:
         path: TFplan.JSON
 
     - name: tfsec
-      uses: aquasecurity/tfsec-sarif-action@v0.1.0
+      uses: aquasecurity/tfsec-action@v1.0.0
       with:
         # sarif_file: tfsec.sarif 
         format: tfsec.json 
 
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        # Path to SARIF file relative to the root of the repository
-        sarif_file: tfsec.sarif   
+    # - name: Upload SARIF file
+    #   uses: github/codeql-action/upload-sarif@v2
+    #   with:
+    #     # Path to SARIF file relative to the root of the repository
+    #     sarif_file: tfsec.sarif   
 
-    - name: Upload the build output
+    - name: Upload the trivy output
       uses: actions/upload-artifact@v3
       with:
         name: tfsec-output
