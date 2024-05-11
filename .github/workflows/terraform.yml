@@ -17,6 +17,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v1
 
+  # Trivy stage
     - name: Run Trivy vulnerability scanner in repo mode
       uses: aquasecurity/trivy-action@master
       with:
@@ -24,7 +25,8 @@ jobs:
         # ignore-unfixed: true
         format: 'sarif'
         output: 'trivy-results.sarif'
-        
+
+    # Save trivy output to artifacts
     - name: Upload the trivy output
       uses: actions/upload-artifact@v3
       with:
@@ -64,15 +66,17 @@ jobs:
       # if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
       run: |
         terraform plan -no-color -input=false \
-        -out=tfplan.json
+        -out=tfplan
       continue-on-error: true
-
+      
+  # Save plan to artifacts
     - name: Upload the terraform plan output
       uses: actions/upload-artifact@v3
       with:
         name: tf-plan
-        path: tfplan.json
+        path: tfplan
 
+  # tfsec stage to check 
     - name: tfsec
       uses: aquasecurity/tfsec-sarif-action@v0.1.0
       with:
@@ -84,7 +88,8 @@ jobs:
     #     # Path to SARIF file relative to the root of the repository
     #     sarif_file: tfsec.sarif   
 
-    - name: Upload the trivy output
+    # Save tfsec output to artifacts
+    - name: Upload the tfsec output
       uses: actions/upload-artifact@v3
       with:
         name: tfsec-output
