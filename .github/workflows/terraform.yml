@@ -61,17 +61,32 @@ jobs:
       run: terraform validate -no-color
 
 # Generates an execution plan for Terraform
+    # - name: Terraform Plan
+    #   id: plan
+    #   # if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
+    #   run: |
+    #     terraform plan -no-color -input=false \
+    #     -out=tfplan
+    #   continue-on-error: true
+
     - name: Terraform Plan
-      id: plan
-      # if: github.ref != 'refs/heads/main' || github.event_name == 'pull_request'
+      id: tf-plan
       run: |
-        terraform plan -no-color -input=false \
-        -out=tfplan
-      continue-on-error: true
+        export exitcode=0
+        terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+
+        echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
+        
+        if [ $exitcode -eq 1 ]; then
+          echo Terraform Plan Failed!
+          exit 1
+        else 
+          exit 0
+        fi
       
   # Save plan to artifacts
     - name: Upload the terraform plan output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tf-plan
         path: tfplan
