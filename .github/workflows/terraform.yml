@@ -23,7 +23,7 @@ jobs:
         scan-type: 'fs'
         # ignore-unfixed: true
         # format: 'sarif'
-        output: trivy-results
+        output: 'trivy-results'
         
     - name: Upload the trivy output
       uses: actions/upload-artifact@v3
