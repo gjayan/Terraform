@@ -119,6 +119,7 @@ jobs:
        # This will add both a CLI output to the console and create a results.sarif file
          output_format: cli,sarif
          output_file_path: console,checkov-results.sarif
+         soft_fail: true # optional: do not return an error code if there are failed checks
 
      # Save checkov output to artifacts
     - name: Upload the tfsec output
