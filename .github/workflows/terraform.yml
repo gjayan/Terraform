@@ -112,6 +112,21 @@ jobs:
         name: tfsec-output
         path: tfsec.sarif
 
+    # checkov stage
+    - name: Checkov GitHub Action
+      uses: bridgecrewio/checkov-action@v12
+      with:
+       # This will add both a CLI output to the console and create a results.sarif file
+         output_format: cli,sarif
+         output_file_path: console,checkov-results.sarif
+
+     # Save checkov output to artifacts
+    - name: Upload the tfsec output
+      uses: actions/upload-artifact@v3
+      with:
+        name: checkov-output
+        path: checkov-results.sarif
+
     # - name: Download the build output
     #   uses: actions/download-artifact@v2
     #   with:
