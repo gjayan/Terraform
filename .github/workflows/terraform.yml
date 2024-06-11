@@ -138,8 +138,8 @@ jobs:
       uses: terraform-docs/gh-actions@v1.2.0
       with:
         working-dir: .
-        output-file: README.md
-        output-method: inject
+        output-file: TFDOC.md
+        output-method: replace
         # git-push: "true"
 
       # Save checkov output to artifacts
@@ -147,4 +147,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tf-doc
-        path: README.md
+        path: TFDOC.md
