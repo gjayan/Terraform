@@ -132,4 +132,12 @@ jobs:
     #   uses: actions/download-artifact@v2
     #   with:
     #     name: tfsec-output
-            
+
+    # Terraform docs
+    - name: Render terraform docs and push changes back to PR
+      uses: terraform-docs/gh-actions@main
+      with:
+        working-dir: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
