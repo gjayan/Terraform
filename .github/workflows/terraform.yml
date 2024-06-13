@@ -137,8 +137,8 @@ jobs:
     - name: Render terraform docs and push changes back to PR
       uses: terraform-docs/gh-actions@v1.2.0
       with:
-        #working-dir: .,Modules/ec2/,Modules/security-group/
-        working-dir: Modules/ec2/
+        working-dir: .,Modules/ec2/,Modules/security-group/
+        # working-dir: Modules/ec2/
         output-file: TFDOC.md
         output-method: replace
         # git-push: "true"
