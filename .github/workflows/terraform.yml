@@ -140,7 +140,7 @@ jobs:
         #working-dir: .,Modules/ec2/,Modules/security-group/
         working-dir: Modules/ec2/
         output-file: TFDOC.md
-        output-method: inject
+        output-method: replace
         # git-push: "true"
 
       # Save checkov output to artifacts
