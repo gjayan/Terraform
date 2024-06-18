@@ -149,3 +149,14 @@ jobs:
       with:
         name: tf-doc
         path: TFDOC.md
+
+
+    - name: README.md generation
+      uses: terraform-docs/gh-actions@main
+      id: tfdocs
+      with:
+        config-file: terraform-docs.yml
+        working-dir: .
+        output-file: README.md
+        output-method: inject
+        # git-push: "true"
