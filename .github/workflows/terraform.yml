@@ -166,5 +166,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tf-doc-config
-        path: README-DOC.md
+        path: Modules/ec2/README-DOC.md, Modules/security-group/README-DOC.md
 
