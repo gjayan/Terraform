@@ -157,7 +157,7 @@ jobs:
       with:
         # config-file: terraform-docs.yml
         working-dir: Modules/ec2/,Modules/security-group/
-        output-file: README.md
+        output-file: README-DOC.md
         output-method: inject
         # git-push: "true"
 
@@ -166,5 +166,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tf-doc-config
-        path: README.md
+        path: README-DOC.md
 
