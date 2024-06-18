@@ -151,20 +151,20 @@ jobs:
         path: TFDOC.md
 
 
-    - name: README.md generation
-      uses: terraform-docs/gh-actions@main
-      id: tfdocs
-      with:
-        # config-file: terraform-docs.yml
-        working-dir: Modules/ec2/,Modules/security-group/
-        output-file: README-DOC.md
-        output-method: inject
-        # git-push: "true"
+    # - name: README.md generation
+    #   uses: terraform-docs/gh-actions@main
+    #   id: tfdocs
+    #   with:
+    #     # config-file: terraform-docs.yml
+    #     working-dir: Modules/ec2/,Modules/security-group/
+    #     output-file: README-DOC.md
+    #     output-method: inject
+    #     # git-push: "true"
 
-       # Save tfdoc to artifacts
-    - name: Upload the tf doc README.md file
-      uses: actions/upload-artifact@v3
-      with:
-        name: tf-doc-config
-        path: Modules/ec2/README-DOC.md, Modules/security-group/README-DOC.md
+    #    # Save tfdoc to artifacts
+    # - name: Upload the tf doc README.md file
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: tf-doc-config
+    #     path: Modules/ec2/README-DOC.md, Modules/security-group/README-DOC.md
 
