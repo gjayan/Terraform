@@ -31,9 +31,9 @@ content: |-
     {{- end }}
   }
   ```
-{{ .Resources }}
-{{ .Inputs }}
-{{ .Outputs }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  {{ .Outputs }}
 output:
   file: README.md
   mode: inject
