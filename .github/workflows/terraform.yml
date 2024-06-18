@@ -143,7 +143,7 @@ jobs:
         output-method: replace
         # git-push: "true"
 
-      # Save checkov output to artifacts
+      # Save tfdoc to artifacts
     - name: Upload the tf doc
       uses: actions/upload-artifact@v3
       with:
@@ -160,3 +160,11 @@ jobs:
         output-file: README.md
         output-method: inject
         # git-push: "true"
+
+       # Save tfdoc to artifacts
+    - name: Upload the tf doc README.md file
+      uses: actions/upload-artifact@v3
+      with:
+        name: tf-doc-config
+        path: README.md
+
