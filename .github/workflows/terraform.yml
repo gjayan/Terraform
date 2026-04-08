@@ -29,7 +29,7 @@ jobs:
 
     # Save trivy output to artifacts
     - name: Upload the trivy output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: trivy-output
         path: 'trivy-results.sarif'
@@ -107,7 +107,7 @@ jobs:
 
     # Save tfsec output to artifacts
     - name: Upload the tfsec output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tfsec-output
         path: tfsec.sarif
@@ -123,13 +123,13 @@ jobs:
 
      # Save checkov output to artifacts
     - name: Upload the tfsec output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: checkov-output
         path: checkov-results.sarif
 
     # - name: Download the build output
-    #   uses: actions/download-artifact@v2
+    #   uses: actions/download-artifact@v4
     #   with:
     #     name: tfsec-output
 
@@ -145,7 +145,7 @@ jobs:
 
       # Save tfdoc to artifacts
     - name: Upload the tf doc
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tf-doc
         path: TFDOC.md
